@@ -1,10 +1,7 @@
-# Datalorian AI – Next.js + Tailwind CSS
+# Datalorian AI v2
 
-Kosmiczna platforma rekomendacyjna dla e-commerce oparta na sztucznej inteligencji.
-
-## Funkcje:
-- 🌌 Motyw kosmiczny (ciemny styl)
-- 🌐 Wersje językowe: polski 🇵🇱 i angielski 🇬🇧
-- 🧠 Sekcja o rekomendacjach AI
-- 📨 Formularz kontaktowy (email)
-- ✍️ Prosty blog (placeholder)
+Next.js + Tailwind CSS
+- Motyw: kosmiczny
+- Języki: PL/EN (do rozbudowy)
+- Blog jako sekcja
+- Email kontaktowy widoczny
