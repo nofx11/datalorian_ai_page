@@ -5,8 +5,8 @@ import translations from '../locales'
 
 export default function Home() {
   const router = useRouter();
-  const { locale } = router;
-  const t = translations[locale];
+  const locale = router.locale || 'pl';
+  const t = translations[locale] || translations['pl'];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-indigo-900 to-black text-white font-sans">
@@ -14,13 +14,13 @@ export default function Home() {
 
       <main className="max-w-3xl mx-auto px-6 py-10">
         <nav className="flex justify-between mb-10 text-sm text-indigo-300">
-          <div className="space-x-4">
-            <Link href="/" locale="pl">PL</Link>
-            <Link href="/" locale="en">EN</Link>
+          <div className="flex gap-4 text-sm text-indigo-200 underline underline-offset-4">
+            <Link href="/" locale="pl"><button className="hover:text-indigo-400">PL</button></Link>
+            <Link href="/" locale="en"><button className="hover:text-indigo-400">EN</button></Link>
           </div>
-          <div className="space-x-4">
-            <a href="#blog">{t.blog}</a>
-            <a href="mailto:datalorian.ai@gmail.com">{t.contact}</a>
+          <div className="flex gap-4 text-sm text-indigo-200 underline underline-offset-4">
+            <a href="#blog" className="hover:text-indigo-400">{t.blog}</a>
+            <a href="mailto:datalorian.ai@gmail.com" className="hover:text-indigo-400">{t.contact}</a>
           </div>
         </nav>
 
