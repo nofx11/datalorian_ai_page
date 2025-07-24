@@ -40,7 +40,7 @@ export default function Home() {
       </Head>
       <header className="flex justify-between items-center p-4 shadow-md">
         <div className="flex items-center space-x-4">
-          <Image src={logo} alt="Datalorian AI logo" width={80} height={80} />
+          <Image src={logo} alt="Datalorian AI logo" width={440} height={180} />
           <h1 className="text-2xl font-bold">{t.title}</h1>
         </div>
         <div className="space-x-4">
