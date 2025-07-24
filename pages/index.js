@@ -1,48 +1,80 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import translations from '../locales'
+
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import logo from "../public/logo.png";
+
+const translations = {
+  pl: {
+    title: "Datalorian AI",
+    description:
+      "Inteligentna platforma rekomendacyjna oparta na AI dla e-commerce. Wykorzystujemy dane i modele sztucznej inteligencji, by zwiększać konwersję i trafność sugestii.",
+    blogTitle: "🧠 Blog",
+    blogPostTitle: "Jak AI zmienia systemy rekomendacji",
+    blogPost:
+      "Systemy rekomendacyjne oparte na sztucznej inteligencji potrafią dynamicznie analizować zachowania użytkowników, dane o produktach oraz kontekst w czasie rzeczywistym. Dzięki modelom uczenia maszynowego możliwa jest hiperpersonalizacja, co znacząco zwiększa współczynniki konwersji w e-commerce.",
+    contact: "Kontakt",
+    footer: "© 2025 Datalorian AI — powered by space-grade intelligence.",
+  },
+  en: {
+    title: "Datalorian AI",
+    description:
+      "An intelligent AI-based recommendation platform for e-commerce. We leverage data and artificial intelligence models to increase conversion and suggestion accuracy.",
+    blogTitle: "🧠 Blog",
+    blogPostTitle: "How AI is Changing Recommendation Systems",
+    blogPost:
+      "AI-powered recommendation systems dynamically analyze user behavior, product data, and context in real-time. Machine learning enables hyper-personalization, significantly improving conversion rates in e-commerce.",
+    contact: "Contact",
+    footer: "© 2025 Datalorian AI — powered by space-grade intelligence.",
+  },
+};
 
 export default function Home() {
-  const router = useRouter();
-  const locale = router.locale || 'pl';
-  const t = translations[locale] || translations['pl'];
+  const [lang, setLang] = useState("pl");
+  const t = translations[lang];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-indigo-900 to-black text-white font-sans">
-      <Head><title>Datalorian AI</title></Head>
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
+      <Head>
+        <title>{t.title}</title>
+      </Head>
+      <header className="flex justify-between items-center p-4 shadow-md">
+        <div className="flex items-center space-x-4">
+          <Image src={logo} alt="Datalorian AI logo" width={80} height={80} />
+          <h1 className="text-2xl font-bold">{t.title}</h1>
+        </div>
+        <div className="space-x-4">
+          <button onClick={() => setLang("pl")}>PL</button>
+          <button onClick={() => setLang("en")}>EN</button>
+        </div>
+      </header>
+      <main className="max-w-4xl mx-auto p-4">
+        <p className="text-lg my-4">{t.description}</p>
 
-      <main className="max-w-3xl mx-auto px-6 py-10">
-        <nav className="flex justify-between mb-10 text-sm text-indigo-300">
-          <div className="flex gap-4 text-sm text-indigo-200 underline underline-offset-4">
-            <Link href="/" locale="pl"><button className="hover:text-indigo-400">PL</button></Link>
-            <Link href="/" locale="en"><button className="hover:text-indigo-400">EN</button></Link>
-          </div>
-          <div className="flex gap-4 text-sm text-indigo-200 underline underline-offset-4">
-            <a href="#blog" className="hover:text-indigo-400">{t.blog}</a>
-            <a href="mailto:datalorian.ai@gmail.com" className="hover:text-indigo-400">{t.contact}</a>
-          </div>
-        </nav>
-
-        <header className="text-center mb-16">
-          <img src="/logo.png" alt="Datalorian AI" className="h-12 mx-auto mb-4" />
-          <h1 className="text-4xl font-bold">Datalorian AI</h1>
-          <p className="text-lg mt-4 text-indigo-200">{t.description}</p>
-        </header>
-
-        <section id="blog" className="mb-16">
-          <h2 className="text-2xl font-semibold mb-4">🪐 {t.blog}</h2>
-          <article className="bg-indigo-950 p-6 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-2">{t.blogPostTitle}</h3>
-            <p className="text-sm text-indigo-300 mb-2">{t.blogDate}</p>
-            <p>{t.blogContent}</p>
+        <section id="blog" className="my-10">
+          <h2 className="text-xl font-semibold mb-4">{t.blogTitle}</h2>
+          <article>
+            <h3 className="text-lg font-bold">{t.blogPostTitle}</h3>
+            <p className="text-sm text-gray-700 mt-2">{t.blogPost}</p>
           </article>
         </section>
 
-        <footer className="text-center text-sm text-indigo-400 mt-20">
-          © 2025 Datalorian AI — powered by space-grade intelligence.
-        </footer>
+        <section id="contact" className="mt-10">
+          <h2 className="text-xl font-semibold">{t.contact}</h2>
+          <p className="mt-2">
+            📧{" "}
+            <a
+              href="mailto:datalorian.ai@gmail.com"
+              className="text-blue-600 underline"
+            >
+              datalorian.ai@gmail.com
+            </a>
+          </p>
+        </section>
       </main>
+      <footer className="text-center p-4 border-t mt-10 text-sm text-gray-600">
+        {t.footer}
+      </footer>
     </div>
-  )
+  );
 }
