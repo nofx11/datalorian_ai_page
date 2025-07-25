@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background: #0a0a23;
+  color: #fff;
+  font-family: 'Inter', 'Arial', sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background: transparent;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+.nebula-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 60% 40%, rgba(80,0,120,0.25) 0%, rgba(10,10,35,0.7) 60%, transparent 100%),
+              radial-gradient(ellipse at 20% 70%, rgba(0,180,255,0.10) 0%, transparent 80%),
+              linear-gradient(120deg, rgba(40,0,80,0.15) 0%, rgba(0,0,0,0.7) 100%);
+  opacity: 0.85;
+}
+
+.star.parallax {
+  animation: parallaxMove 20s linear infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes parallaxMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
+}
+
+.lang-btn {
+  @apply px-4 py-1 rounded-full bg-[#181848] text-white font-semibold transition-colors duration-200 shadow hover:bg-blue-600 hover:text-white border border-blue-400;
+}
