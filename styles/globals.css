@@ -60,5 +60,90 @@ body {
 }
 
 .lang-btn {
-  @apply px-4 py-1 rounded-full bg-[#181848] text-white font-semibold transition-colors duration-200 shadow hover:bg-blue-600 hover:text-white border border-blue-400;
+  @apply px-4 py-1 rounded-full bg-[#181848] text-white font-semibold transition-all duration-200 shadow hover:bg-blue-600 hover:text-white border border-blue-400;
+  transform: scale(1);
+}
+.lang-btn:hover, .lang-btn:focus {
+  background: linear-gradient(90deg, #1e3a8a 0%, #6366f1 100%);
+  color: #fff;
+  box-shadow: 0 4px 24px #6366f1cc;
+  transform: scale(1.06);
+}
+
+.cta-animated {
+  @apply transition-all duration-200;
+  background: linear-gradient(90deg, #1e3a8a 0%, #38bdf8 100%);
+  box-shadow: 0 0 16px 4px #6366f1cc, 0 0 32px 8px #0ea5e988;
+  position: relative;
+  z-index: 2;
+}
+.cta-animated:hover, .cta-animated:focus {
+  background: linear-gradient(90deg, #6366f1 0%, #fbbf24 100%);
+  box-shadow: 0 0 32px 8px #6366f1cc, 0 0 64px 16px #fbbf2488;
+  transform: scale(1.06);
+}
+
+/* Parallax mgławica - dodatkowa warstwa */
+.nebula-parallax {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  animation: nebulaParallaxMove 60s linear infinite alternate;
+}
+@keyframes nebulaParallaxMove {
+  0% { transform: translateX(0) scale(1.05); }
+  100% { transform: translateX(-60px) scale(1.08); }
+}
+
+.lang-dropdown {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 0.18s cubic-bezier(0.4,0,0.2,1), transform 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.lang-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.bg-ornaments {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  mix-blend-mode: lighten;
+}
+
+@media (max-width: 640px) {
+  .lang-btn, .cta-animated {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  .lang-dropdown {
+    min-width: 100px;
+    font-size: 1.1rem;
+  }
+  section, .max-w-2xl, .max-w-4xl {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+.lang-btn:focus, .cta-animated:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px #6366f155;
 }
