@@ -1,0 +1,12 @@
+{
+    "redirects": [
+      {
+        "source": "/(.*)",
+        "has": [
+          { "type": "host", "value": "datalorian.pl" }
+        ],
+        "destination": "https://datalorian.ai/pl/$1",
+        "permanent": true
+      }
+    ]
+  }
