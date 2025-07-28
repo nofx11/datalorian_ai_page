@@ -1,123 +1,178 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../public/logo.png";
 
 export default function Chat() {
-  useEffect(() => {
-    const stars = document.querySelector('.stars');
-    if (stars && stars.childElementCount === 0) {
-      for (let i = 0; i < 120; i++) {
-        const star = document.createElement('div');
-        star.className = 'star' + (Math.random() > 0.7 ? ' parallax' : '');
-        star.style.top = Math.random() * 100 + 'vh';
-        star.style.left = Math.random() * 100 + 'vw';
-        star.style.opacity = 0.5 + Math.random() * 0.5;
-        star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
-        stars.appendChild(star);
-      }
-    }
-  }, []);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Generate floating particles
+  const particles = Array.from({ length: 50 }).map((_, i) => {
+    const delay = Math.random() * 8;
+    const duration = 8 + Math.random() * 7;
+    return (
+      <div
+        key={i}
+        className="particle"
+        style={{
+          left: `${Math.random() * 100}%`,
+          animationDelay: `${delay}s`,
+          animationDuration: `${duration}s`,
+        }}
+      />
+    );
+  });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#0a0a23] text-white font-sans flex flex-col relative">
+    <div className="min-h-screen bg-[#0a0a0f] text-white relative overflow-hidden">
       <Head>
-        <title>Chat with the founder of Datalorian AI | Datalorian AI</title>
-        <meta name="description" content="Chat with the founder of Datalorian AI or the AI chatbot. Educational content about AI, ML, and Data Science." />
-        <meta property="og:title" content="Chat with the founder of Datalorian AI | Datalorian AI" />
-        <meta property="og:description" content="Chat with the founder of Datalorian AI or the AI chatbot. Educational content about AI, ML, and Data Science." />
+        <title>Chat with Datalorian AI Founder | Datalorian AI</title>
+        <meta name="description" content="Chat with the founder of Datalorian AI or an AI chatbot. Educational website about AI, ML and Data Science." />
+        <meta property="og:title" content="Chat with Datalorian AI Founder | Datalorian AI" />
+        <meta property="og:description" content="Chat with the founder of Datalorian AI or an AI chatbot. Educational website about AI, ML and Data Science." />
         <meta property="og:image" content="/logo.png" />
         <meta property="og:type" content="website" />
         <link rel="alternate" hreflang="pl" href="https://datalorian.ai/pl/chat" />
         <link rel="alternate" hreflang="en" href="https://datalorian.ai/en/chat" />
       </Head>
-      {/* Sticky top bar with logo and language dropdown in the top right corner */}
-      <div style={{position:'sticky',top:0,zIndex:30,background:'rgba(10,10,35,0.92)',backdropFilter:'blur(6px)',boxShadow:'0 2px 12px #18184822'}} className="w-full flex items-center px-4 py-2 gap-4">
-        <a href="/en" aria-label="Back to homepage">
-          <Image src={logo} alt="Datalorian AI logo" height={32} style={{objectFit:'contain',borderRadius:4,boxShadow:'none',height:32}} />
-        </a>
-        <a href="/en/chat" className="lang-btn text-base font-bold ml-2">Let's chat</a>
-        <a href="/en/ai" className="lang-btn text-base font-bold ml-2">Learn more</a>
-        <div className="flex-1" />
-        <div className="relative">
-          <button
-            className="lang-btn flex items-center gap-2 px-3 py-1 text-base font-bold"
-            onClick={() => setShowDropdown((v) => !v)}
-            aria-haspopup="listbox"
-            aria-expanded={showDropdown}
-            style={{boxShadow:'none'}}
-          >
-            EN
-            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-          </button>
-          {showDropdown && (
-            <div className="absolute right-0 mt-2 w-24 bg-[#181848] rounded shadow-lg z-50 border border-blue-900">
-              <a
-                href="/pl/chat"
-                className="flex items-center px-3 py-2 hover:bg-blue-900/30 transition-colors text-base"
-                onClick={() => setShowDropdown(false)}
-              >
-                PL
+
+      {/* Animated background */}
+      <div className="animated-bg" />
+      
+      {/* Floating particles */}
+      <div className="particles">
+        {particles}
+      </div>
+
+      {/* Navigation */}
+      <nav className={`nav-container ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <a href="/en" className="text-xl font-bold nav-logo">
+                Datalorian AI
               </a>
             </div>
-          )}
+            
+            <div className="hidden md:block">
+              <div className="flex items-baseline space-x-4">
+                <a href="/en/chat" className="nav-link">Let's Chat</a>
+                <a href="/en/ai" className="nav-link">Learn More</a>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <div className="lang-selector">
+                <button
+                  className="lang-btn"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                >
+                  EN
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showDropdown && (
+                  <div className="lang-dropdown">
+                    <a href="/pl/chat" className="lang-option">PL</a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      {/* Centered title below sticky bar */}
-      <div style={{marginTop: '24px', marginBottom: '24px', textAlign: 'center', position: 'relative', zIndex: 2}}>
-        <h1 className="text-2xl md:text-3xl font-bold" style={{fontFamily:'Inter, Arial, sans-serif',color:'#f3f4f6',textShadow:'none',margin:0}}>Chat with the founder of Datalorian AI</h1>
-      </div>
-      {/* --- COSMIC BACKGROUND --- */}
-      <div className="stars" />
-      <svg className="nebula-bg" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="nebula1" cx="60%" cy="40%" r="80%" fx="60%" fy="40%" gradientTransform="rotate(20)">
-            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.18" />
-            <stop offset="60%" stopColor="#0ea5e9" stopOpacity="0.10" />
-            <stop offset="100%" stopColor="#0a0a23" stopOpacity="0.0" />
-          </radialGradient>
-        </defs>
-        <ellipse cx="900" cy="350" rx="420" ry="180" fill="url(#nebula1)" />
-      </svg>
-      {/* Parallax nebula - extra layer */}
-      <svg className="nebula-parallax" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="nebulaParallax1" cx="60%" cy="60%" r="80%" fx="60%" fy="60%">
-            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.18" />
-            <stop offset="60%" stopColor="#0ea5e9" stopOpacity="0.10" />
-            <stop offset="100%" stopColor="#0a0a23" stopOpacity="0.0" />
-          </radialGradient>
-        </defs>
-        <ellipse cx="1000" cy="500" rx="420" ry="180" fill="url(#nebulaParallax1)" />
-      </svg>
-      {/* Geometric ornaments background */}
-      <svg className="bg-ornaments" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="300" cy="700" r="120" stroke="#38bdf8" strokeWidth="1.5" fill="none" />
-        <circle cx="1200" cy="200" r="80" stroke="#6366f1" strokeWidth="1.2" fill="none" />
-        <circle cx="900" cy="450" r="200" stroke="#fbbf24" strokeWidth="1.1" fill="none" />
-        <line x1="0" y1="450" x2="1440" y2="450" stroke="#38bdf8" strokeWidth="1" strokeDasharray="12 8" />
-        <line x1="720" y1="0" x2="720" y2="900" stroke="#6366f1" strokeWidth="1" strokeDasharray="10 10" />
-        <rect x="200" y="100" width="180" height="180" rx="36" stroke="#fbbf24" strokeWidth="1" fill="none" />
-      </svg>
-      {/* Overlay under text section */}
-      <div style={{position:'absolute', top:0, left:0, width:'100%', height:'100%', background:'rgba(10,10,35,0.55)', zIndex:1, pointerEvents:'none'}} />
-      <div style={{position:'relative', zIndex:2}}>
-        <div className="flex justify-center w-full">
-          <div className="w-full max-w-4xl h-[700px] sm:h-[480px] xs:h-[280px] rounded-2xl overflow-hidden shadow-2xl border-2 border-blue-900 mb-8">
+      </nav>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content animate-fade-in-up">
+          <h1 className="hero-title glow-text">
+            Chat with the Founder
+          </h1>
+          
+          <p className="hero-subtitle animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            Chat with the founder of Datalorian AI or an AI chatbot about artificial intelligence, 
+            machine learning, and data analysis.
+          </p>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section className="max-w-4xl mx-auto px-4 py-16 relative z-10">
+        <div className="card animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold mb-4 text-white">
+              AI Chat
+            </h2>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Chat with an advanced AI chatbot that will help you understand the world of artificial intelligence 
+              and machine learning.
+            </p>
+          </div>
+          
+          {/* Hugging Face Gradio Chatbot */}
+          <div className="w-full h-[600px] rounded-xl overflow-hidden border border-violet-500/20 shadow-2xl chat-iframe">
             <iframe
-              src="https://faizan481-ai-chatbot.hf.space/?__theme=system&deep_link=eHV42wZ7-zs"
+              src="https://faizan481-ai-chatbot.hf.space/?__theme=dark&deep_link=eHV42wZ7-zs"
               title="AI Chatbot"
               width="100%"
               height="100%"
-              style={{border:0, width:'100%', height:'100%', minHeight:'100%', minWidth:'100%'}}
+              style={{border: 0, minHeight: '600px'}}
               allow="clipboard-write; microphone;"
+              className="rounded-xl"
             />
           </div>
+          
+          <div className="text-center mt-6">
+            <a 
+              href="/en" 
+              className="btn-secondary inline-flex items-center gap-2"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+              Back to homepage
+            </a>
+          </div>
         </div>
-        <div className="flex justify-center mt-8">
-          <a href="/en" className="px-6 py-2 rounded-full bg-gradient-to-r from-blue-900 to-blue-500 text-gray-100 font-bold hover:from-blue-700 hover:to-blue-300 transition-colors duration-200 text-lg" style={{fontFamily: 'Inter, Arial, sans-serif', textShadow:'none', boxShadow:'none'}}>Back to homepage</a>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <div className="social-links">
+            <a href="https://x.com/DatalorianAI" target="_blank" rel="noopener noreferrer" className="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.89 3.549a1.25 1.25 0 0 0-1.77 0l-5.12 5.12-5.12-5.12a1.25 1.25 0 1 0-1.77 1.77l5.12 5.12-5.12 5.12a1.25 1.25 0 1 0 1.77 1.77l5.12-5.12 5.12 5.12a1.25 1.25 0 1 0 1.77-1.77l-5.12-5.12 5.12-5.12a1.25 1.25 0 0 0 0-1.77z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/datalorianai/" target="_blank" rel="noopener noreferrer" className="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.28c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm15.5 10.28h-3v-4.5c0-1.1-.9-2-2-2s-2 .9-2 2v4.5h-3v-9h3v1.22c.41-.72 1.39-1.22 2.5-1.22 1.93 0 3.5 1.57 3.5 3.5v5.5z"/>
+              </svg>
+            </a>
+            <a href="mailto:datalorian.ai@gmail.com" className="social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2 4.5A2.5 2.5 0 0 1 4.5 2h15A2.5 2.5 0 0 1 22 4.5v15A2.5 2.5 0 0 1 19.5 22h-15A2.5 2.5 0 0 1 2 19.5v-15Zm2.25.5a.75.75 0 0 0-.75.75v.638l8.25 5.5 8.25-5.5V5.75a.75.75 0 0 0-.75-.75h-15Zm15.75 2.862-7.7 5.134a.75.75 0 0 1-.83 0L3.5 7.862V19.5c0 .414.336.75.75.75h15a.75.75 0 0 0 .75-.75V7.862Z"/>
+              </svg>
+            </a>
+          </div>
+          <p className="text-gray-400 text-sm">
+            © 2025 Datalorian AI — powered by space-grade intelligence.
+          </p>
         </div>
-      </div>
+      </footer>
     </div>
   );
 } 
