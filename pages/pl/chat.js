@@ -97,7 +97,15 @@ export default function Chat() {
                 </button>
                 {showDropdown && (
                   <div className="lang-dropdown">
-                    <a href="/en/chat" className="lang-option">EN</a>
+                    <button
+                      className="lang-option"
+                      onClick={() => {
+                        document.cookie = 'lang=en; path=/; max-age=31536000';
+                        window.location.href = '/en/chat';
+                      }}
+                    >
+                      EN
+                    </button>
                   </div>
                 )}
               </div>

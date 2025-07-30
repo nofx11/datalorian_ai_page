@@ -95,9 +95,15 @@ export default function Home() {
                 </button>
                 {showDropdown && (
                   <div className="lang-dropdown">
-                    <a href="/pl" className="lang-option">
+                    <button
+                      className="lang-option"
+                      onClick={() => {
+                        document.cookie = 'lang=PL; path=/; max-age=31536000';
+                        window.location.href = '/pl';
+                      }}
+                    >
                       PL
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>

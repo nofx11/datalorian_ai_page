@@ -96,9 +96,15 @@ export default function AI() {
                 </button>
                 {showDropdown && (
                   <div className="lang-dropdown">
-                    <a href="/pl/ai" className="lang-option">
+                    <button
+                      className="lang-option"
+                      onClick={() => {
+                        document.cookie = 'lang=pl; path=/; max-age=31536000';
+                        window.location.href = '/pl/ai';
+                      }}
+                    >
                       PL
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
