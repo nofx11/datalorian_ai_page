@@ -92,43 +92,101 @@ html {
   overflow: hidden;
 }
 
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: var(--primary-violet);
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: particleFloat 8s infinite linear;
-}
 
+
+/* Even stars use a secondary violet tone and update color accordingly */
 .particle:nth-child(even) {
   background: var(--secondary-violet);
+  color: var(--secondary-violet);
   animation-duration: 12s;
 }
 
+/* Every third star uses the accent purple and updates color accordingly */
 .particle:nth-child(3n) {
   background: var(--accent-purple);
+  color: var(--accent-purple);
   animation-duration: 15s;
 }
 
-@keyframes particleFloat {
+/* Add a subtle vertical trail behind each particle. The gradient starts
+ * with the star's color (via currentColor) and fades out to transparent.
+ * This creates the appearance of a light smear behind the moving star.
+ */
+.particle::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* Narrow trail width relative to the enlarged particle size */
+  width: 2px;
+  /* Length of the trail; increased to create much longer smears */
+  height: 40px;
+  background: linear-gradient(currentColor, rgba(0, 0, 0, 0));
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+
+
+/* Individual meteor (shooting star) */
+.meteors {
+  position: absolute; /*position: fixed; - na cala strone */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.meteor {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: var(--primary-violet);
+  opacity: 1;
+  animation-name: meteorFallFullPage;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 50%;
+  z-index: 1;
+  /* efekt błysku */
+  box-shadow: 0 0 12px 4px rgba(139,92,246,0.3), 0 0 14px 4px var(--primary-violet);
+}
+
+.meteor::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 1280px;
+  background: linear-gradient(to top, rgba(139,92,246,0.3), transparent 90%);
+  opacity: 0.7;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes meteorFallFullPage {
   0% {
-    transform: translateY(100vh) translateX(0);
+    transform: translateY(-150px);
     opacity: 0;
   }
   10% {
-    opacity: 0.6;
+    opacity: 1;
   }
-  90% {
-    opacity: 0.6;
+  80% {
+    opacity: 1;
   }
   100% {
-    transform: translateY(-100px) translateX(100px);
+    transform: translateY(var(--meteor-fall-distance, 100vh));
     opacity: 0;
   }
 }
-
 /* Navigation styles */
 .nav-container {
   position: sticky;

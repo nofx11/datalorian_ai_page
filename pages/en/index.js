@@ -109,15 +109,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content animate-fade-in-up">
-          <div className="mb-8">
-            <Image
-              src={logo}
-              alt="Datalorian AI logo"
-              width={300}
-              height={120}
-              className="mx-auto mb-6 rounded-2xl glow-border"
-            />
-          </div>
 
           <h1 className="hero-title glow-text">Datalorian AI</h1>
 

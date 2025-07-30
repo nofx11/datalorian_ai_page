@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import { Orbitron } from 'next/font/google';
 import Head from 'next/head';
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '700'] });
@@ -13,6 +13,29 @@ export default function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const router = useRouter();
+
+  // Precompute a set of meteors for the meteor shower. This uses useMemo to avoid
+  // regenerating the array on every render.
+  const meteors = useMemo(() => {
+    return Array.from({ length: 10 }).map((_, i) => {
+      const delay = Math.random() * 5;
+      const duration = 4 + Math.random() * 3;
+      const left = Math.random() * 100;
+      // Vary the height of each meteor to create longer or shorter trails
+      const height = 100 + Math.random() * 150;
+      return (
+        <div
+          key={`meteor-${i}`}
+          className="meteor"
+          style={{
+            left: `${left}%`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+          }}
+        />
+      );
+    });
+  }, []);
 
   useEffect(() => {
     const handleStart = () => setLoading(true);
@@ -45,6 +68,8 @@ export default function MyApp({ Component, pageProps }) {
       )}
       <div className={orbitron.className}>
         <Component {...pageProps} />
+        {/* Meteor shower effect */}
+        <div className="meteors">{meteors}</div>
         {showScroll && (
           <button
             aria-label="Scroll to top"
@@ -59,4 +84,4 @@ export default function MyApp({ Component, pageProps }) {
       </div>
     </LanguageContext.Provider>
   );
-} 
+}
