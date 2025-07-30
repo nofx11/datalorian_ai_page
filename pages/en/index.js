@@ -98,7 +98,7 @@ export default function Home() {
                     <button
                       className="lang-option"
                       onClick={() => {
-                        document.cookie = 'lang=PL; path=/; max-age=31536000';
+                        document.cookie = 'lang=pl; path=/; max-age=31536000';
                         window.location.href = '/pl';
                       }}
                     >
