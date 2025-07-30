@@ -131,13 +131,13 @@ export default function Chat() {
       </section>
 
       {/* Sekcja treści */}
-      <section className="max-w-4xl mx-auto px-4 py-16 relative z-10">
+      <section className="max-w-5xl mx-auto px-2 py-2 relative z-10">
         <div
           className="card animate-fade-in-up"
           style={{ animationDelay: '0.4s' }}
           ref={chatRef}
         >
-          <div className="text-center mb-6">
+          {/* <div className="text-center mb-6">
             <h2 className="text-2xl font-bold mb-4 text-white">
               Rozmowa z AI
             </h2>
@@ -145,17 +145,17 @@ export default function Chat() {
               Porozmawiaj z zaawansowanym chatbotem AI, który pomoże Ci zrozumieć świat sztucznej inteligencji
               i uczenia maszynowego.
             </p>
-          </div>
+          </div> */}
           {/* Chatbot Hugging Face Gradio */}
           <div
-            className="w-full h-[600px] rounded-xl overflow-hidden border border-violet-500/20 shadow-2xl chat-iframe"
+            className="w-full h-[500px] rounded-xl overflow-hidden border border-violet-500/20 shadow-2xl chat-iframe"
           >
             <iframe
               src="https://faizan481-ai-chatbot.hf.space/?__theme=dark&deep_link=eHV42wZ7-zs"
               title="AI Chatbot"
               width="100%"
               height="100%"
-              style={{ border: 0, minHeight: '600px' }}
+              style={{ border: 0, minHeight: '500px' }}
               allow="clipboard-write; microphone;"
               className="rounded-xl"
             />

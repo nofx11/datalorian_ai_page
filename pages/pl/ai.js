@@ -1,12 +1,15 @@
+import React, { useState, useEffect, useRef } from "react";
 import Head from "next/head";
-import { useEffect } from "react";
-import React, { useState } from "react";
-import Image from "next/image";
-import logo from "../../public/logo.png";
 
 export default function AI() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const contentRef = useRef(null);
+  const scrollToContent = () => {
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Generate floating particles
   const particles = Array.from({ length: 50 }).map((_, i) => {
@@ -116,7 +119,13 @@ export default function AI() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content animate-fade-in-up">
-          <h1 className="hero-title glow-text">AI, ML & Data</h1>
+          <h1
+            className="hero-title glow-text cursor-pointer"
+            onClick={scrollToContent}
+            title="Przewiń do treści"
+          >
+            AI, ML & Data
+          </h1>
           <p className="hero-subtitle animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             Odkryj świat sztucznej inteligencji, uczenia maszynowego i analizy danych w przystępny i praktyczny
             sposób.
@@ -125,7 +134,7 @@ export default function AI() {
       </section>
 
       {/* Content Section */}
-      <section className="max-w-4xl mx-auto px-4 py-16 relative z-10">
+      <section className="max-w-4xl mx-auto px-4 py-16 relative z-10" ref={contentRef}>
         <div className="space-y-8">
           {/* Featured Article */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '0.4s' }}>

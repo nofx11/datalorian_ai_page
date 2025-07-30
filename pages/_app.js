@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }) {
   // Precompute a set of meteors for the meteor shower. This uses useMemo to avoid
   // regenerating the array on every render.
   const meteors = useMemo(() => {
-    return Array.from({ length: 10 }).map((_, i) => {
+    return Array.from({ length: 50}).map((_, i) => {
       const delay = Math.random() * 5;
       const duration = 4 + Math.random() * 3;
       const left = Math.random() * 100;
