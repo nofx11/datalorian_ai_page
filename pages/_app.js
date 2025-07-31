@@ -4,6 +4,30 @@ import Head from 'next/head';
 import { createContext, useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 
+// Radiant meteors component (promienisty deszcz meteorytów)
+function RadiantMeteors() {
+  const METEOR_COUNT = 20;
+  const meteors = useMemo(() => {
+    return Array.from({ length: METEOR_COUNT }).map((_, i) => {
+      const angle = -85 + (160 / (METEOR_COUNT - 1)) * i;
+      const duration = 1.8 + Math.random() * 1.5;
+      const delay = Math.random() * 4;
+      return (
+        <div
+          key={i}
+          className="meteor"
+          style={{
+            '--meteor-angle': `${angle}deg`,
+            '--meteor-duration': `${duration}s`,
+            '--meteor-delay': `${delay}s`,
+          }}
+        />
+      );
+    });
+  }, []);
+  return <div className="meteors">{meteors}</div>;
+}
+
 const orbitron = Orbitron({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const LanguageContext = createContext({ lang: 'pl', setLang: () => {} });
@@ -14,28 +38,6 @@ export default function MyApp({ Component, pageProps }) {
   const [showScroll, setShowScroll] = useState(false);
   const router = useRouter();
 
-  // Precompute a set of meteors for the meteor shower. This uses useMemo to avoid
-  // regenerating the array on every render.
-  const meteors = useMemo(() => {
-    return Array.from({ length: 50}).map((_, i) => {
-      const delay = Math.random() * 5;
-      const duration = 4 + Math.random() * 3;
-      const left = Math.random() * 100;
-      // Vary the height of each meteor to create longer or shorter trails
-      const height = 100 + Math.random() * 150;
-      return (
-        <div
-          key={`meteor-${i}`}
-          className="meteor"
-          style={{
-            left: `${left}%`,
-            animationDelay: `${delay}s`,
-            animationDuration: `${duration}s`,
-          }}
-        />
-      );
-    });
-  }, []);
 
   useEffect(() => {
     const handleStart = () => setLoading(true);
@@ -67,9 +69,9 @@ export default function MyApp({ Component, pageProps }) {
         </div>
       )}
       <div className={orbitron.className}>
+        <RadiantMeteors />
         <Component {...pageProps} />
-        {/* Meteor shower effect */}
-        <div className="meteors">{meteors}</div>
+        {/* Meteor shower effect tylko radiant meteors */}
         {showScroll && (
           <button
             aria-label="Scroll to top"
