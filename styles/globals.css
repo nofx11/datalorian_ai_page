@@ -1,3 +1,6 @@
+html, body {
+  overflow-x: hidden !important;
+}
 /* Tailwind custom color utilities for theme variables */
 .bg-dark-bg { background-color: var(--dark-bg) !important; }
 .bg-dark-surface { background-color: var(--dark-surface) !important; }
@@ -112,14 +115,6 @@
   background: rgba(53, 54, 58, 0.18);
   color: var(--primary-orange);
 }
-/* Social icon orange color */
-.social-link {
-  color:  var(--primary-orange) !important;
-  transition: color 0.2s;
-}
-.social-link:hover {
-  color: var(--secondary-orange) !important;
-}
 
 /* Scroll-to-top button orange variant */
 
@@ -193,7 +188,8 @@ html {
 
 @media (max-width: 768px) {
   .meteors {
-    width: 100%;
+    width: 100vw;
+    max-width: 100vw;
     left: 0;
   }
 }
@@ -387,12 +383,12 @@ html {
   color: var(--primary-orange);
 }
 
-.social-links {
+/* .social-links {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-bottom: 1rem;
-}
+} */
 
 
 @keyframes fadeInUp {
@@ -597,7 +593,7 @@ transition: all 0.3s ease;
   width: 40px;
   height: 40px;
   background: transparent;
-  border: 2px solid var(--primary-orange);
+  border: 1px solid var(--primary-orange);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -948,6 +944,7 @@ transition: all 0.3s ease;
 /* Iframe styles */
 .chat-iframe {
   background: var(--dark-card);
+  border: none !important;
   border-radius: 12px;
   box-shadow: none;
   transition: all 0.3s ease;
