@@ -190,7 +190,8 @@ html {
   .meteors {
     width: 100vw;
     max-width: 100vw;
-    left: 0;
+    left: 18%;
+    top: 11vh;
   }
 }
 
