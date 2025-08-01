@@ -4,11 +4,20 @@ import Head from "next/head";
 export default function AI() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [navAnim, setNavAnim] = useState('');
   const contentRef = useRef(null);
   const scrollToContent = () => {
     if (contentRef.current) {
       contentRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  // Animation handler for nav links
+  const handleNavClick = (href) => (e) => {
+    setNavAnim('animate-fade-in-up');
+    setTimeout(() => {
+      window.location.href = href;
+    }, 300); // match animation duration
   };
 
   // Generate floating particles
@@ -77,10 +86,20 @@ export default function AI() {
 
             <div className="hidden md:block">
               <div className="flex items-baseline space-x-4">
-                <a href="/pl/chat" className="nav-link">
+                <a
+                  href="/pl/chat"
+                  className={`nav-link ${navAnim}`}
+                  onClick={handleNavClick('/pl/chat')}
+                  onAnimationEnd={() => setNavAnim('')}
+                >
                   Porozmawiajmy
                 </a>
-                <a href="/pl/ai" className="nav-link">
+                <a
+                  href="/pl/ai"
+                  className={`nav-link ${navAnim}`}
+                  onClick={handleNavClick('/pl/ai')}
+                  onAnimationEnd={() => setNavAnim('')}
+                >
                   Dowiedz się więcej
                 </a>
               </div>
@@ -126,7 +145,7 @@ export default function AI() {
           >
             AI, ML & Data
           </h1>
-          <p className="hero-subtitle animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="hero-subtitle animate-fade-in-up text-secondary" style={{ animationDelay: '0.2s' }}>
             Odkryj świat sztucznej inteligencji, uczenia maszynowego i analizy danych w przystępny i praktyczny
             sposób.
           </p>
@@ -138,8 +157,8 @@ export default function AI() {
         <div className="space-y-8">
           {/* Featured Article */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Jak AI zmienia systemy rekomendacji</h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">Jak AI zmienia systemy rekomendacji</h2>
+            <p className="text-lg text-secondary leading-relaxed">
               Systemy rekomendacyjne oparte na sztucznej inteligencji potrafią dynamicznie analizować zachowania
               użytkowników, dane o produktach oraz kontekst w czasie rzeczywistym. Dzięki modelom uczenia
               maszynowego możliwa jest hiperpersonalizacja, co znacząco zwiększa współczynniki konwersji w
@@ -149,18 +168,18 @@ export default function AI() {
 
           {/* AI Section */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Czym jest AI?</h2>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">Czym jest AI?</h2>
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Sztuczna inteligencja (AI) to dziedzina informatyki zajmująca się tworzeniem systemów zdolnych do
               wykonywania zadań wymagających inteligencji ludzkiej, takich jak rozumienie języka, rozpoznawanie
               obrazów czy podejmowanie decyzji.
             </p>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               AI znajduje zastosowanie w wielu branżach: od medycyny, przez finanse, po rozrywkę. Przykłady to
               systemy rozpoznawania mowy, autonomiczne pojazdy, tłumacze maszynowe czy personalizowane rekomendacje
               w e-commerce.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-secondary leading-relaxed">
               Współczesne AI opiera się na dużych zbiorach danych i zaawansowanych algorytmach, które pozwalają
               maszynom uczyć się na podstawie doświadczenia i przewidywać przyszłe zdarzenia.
             </p>
@@ -168,17 +187,17 @@ export default function AI() {
 
           {/* ML Section */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Czym jest Machine Learning?</h2>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">Czym jest Machine Learning?</h2>
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Uczenie maszynowe (ML) to poddziedzina AI, która polega na budowaniu modeli uczących się na podstawie
               danych. Algorytmy ML potrafią wykrywać wzorce i przewidywać przyszłe zdarzenia bez programowania
               reguł na sztywno.
             </p>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               ML jest wykorzystywane m.in. do analizy obrazów medycznych, detekcji oszustw w bankowości,
               prognozowania popytu czy automatycznego tagowania zdjęć w mediach społecznościowych.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-secondary leading-relaxed">
               Najpopularniejsze techniki ML to uczenie nadzorowane, nienadzorowane oraz uczenie przez
               wzmacnianie. Każda z nich znajduje zastosowanie w innych typach problemów.
             </p>
@@ -186,17 +205,17 @@ export default function AI() {
 
           {/* Data Science Section */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '1.0s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Data Science i dane</h2>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">Data Science i dane</h2>
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Data Science to interdyscyplinarna dziedzina łącząca statystykę, informatykę i wiedzę domenową,
               której celem jest wydobywanie wartości z danych. Dane są paliwem dla AI i ML – im lepsze dane, tym
               lepsze modele.
             </p>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Proces Data Science obejmuje zbieranie, czyszczenie, analizę i wizualizację danych, a także
               wdrażanie modeli predykcyjnych w praktyce biznesowej.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-secondary leading-relaxed">
               W erze Big Data rośnie znaczenie narzędzi do przetwarzania ogromnych wolumenów informacji, takich
               jak Hadoop, Spark czy chmura obliczeniowa.
             </p>

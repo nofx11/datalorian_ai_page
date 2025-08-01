@@ -6,6 +6,14 @@ import React, { useState, useEffect } from "react";
 export default function Home() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const aboutRef = React.useRef(null);
+
+  const scrollToAbout = (e) => {
+    e.preventDefault();
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Generate floating particles
   const particles = Array.from({ length: 50 }).map((_, i) => {
@@ -34,7 +42,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white relative overflow-x-hidden pt-16">
+    <div className="min-h-screen bg-dark-bg text-primary relative overflow-x-hidden pt-16">
       <Head>
         <title>Datalorian AI</title>
         <meta
@@ -115,7 +123,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content animate-fade-in-up">
-          <h1 className="hero-title glow-text">Datalorian AI</h1>
+          <h1 className="hero-title glow-text" onClick={scrollToAbout} title="Przewiń do sekcji O Datalorian AI" style={{cursor:'pointer'}}>
+            Datalorian AI
+          </h1>
 
           <p className="hero-subtitle animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             Odkrywaj świat nowoczesnych technologii, poznawaj praktyczne zastosowania AI i ML, inspiruj się
@@ -126,7 +136,7 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center mt-8 animate-fade-in-up"
             style={{ animationDelay: '0.4s' }}
           >
-            <a href="/pl/chat" className="btn-primary">
+            <a href="/pl/chat" className="btn-secondary">
               Porozmawiajmy
             </a>
             <a href="/pl/ai" className="btn-secondary">
@@ -137,19 +147,19 @@ export default function Home() {
       </section>
 
       {/* Content Section */}
-      <section className="max-w-4xl mx-auto px-4 py-16 relative z-10">
+      <section className="max-w-4xl mx-auto px-4 py-16 relative z-10" ref={aboutRef} id="about">
         <div className="card animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
           <div className="text-center">
-            <h2 className="text-2xl font-bold mb-6 text-white">O Datalorian AI</h2>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-6 text-primary">O Datalorian AI</h2>
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Datalorian AI to strona z treściami informacyjnymi i edukacyjnymi na temat sztucznej inteligencji (AI),
               uczenia maszynowego (ML) oraz analizy danych (Data Science).
             </p>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <p className="text-secondary mb-6 leading-relaxed">
               Naszym celem jest dzielenie się wiedzą w przystępny sposób – zarówno dla początkujących, jak i
               zaawansowanych.
             </p>
-            <p className="text-violet-400 font-semibold text-lg animate-pulse-slow">Więcej treści już wkrótce!</p>
+            <p className="text-accent-orange font-semibold text-lg animate-pulse-slow">Więcej treści już wkrótce!</p>
           </div>
         </div>
       </section>

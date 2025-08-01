@@ -41,7 +41,7 @@ export default function AI() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white relative overflow-x-hidden pt-16">
+    <div className="min-h-screen bg-dark-bg text-primary relative overflow-x-hidden pt-16">
       <Head>
         <title>AI, ML & Data | Datalorian AI</title>
         <meta
@@ -142,8 +142,8 @@ export default function AI() {
         <div className="space-y-8">
           {/* Featured Article */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">How AI is Changing Recommendation Systems</h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">How AI is Changing Recommendation Systems</h2>
+            <p className="text-lg text-secondary leading-relaxed">
               AI-powered recommendation systems can dynamically analyze user behaviors, product data, and real-time
               context. Thanks to machine learning models, hyper-personalization is possible, which significantly
               increases conversion rates in e-commerce.
@@ -152,18 +152,18 @@ export default function AI() {
 
           {/* AI Section */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">What is AI?</h2>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">What is AI?</h2>
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Artificial Intelligence (AI) is a branch of computer science that deals with creating systems capable of
               performing tasks that require human intelligence, such as understanding language, recognizing images, or
               making decisions.
             </p>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               AI finds applications in many industries: from medicine, through finance, to entertainment. Examples
               include speech recognition systems, autonomous vehicles, machine translators, or personalized
               recommendations in e-commerce.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-secondary leading-relaxed">
               Modern AI is based on large datasets and advanced algorithms that allow machines to learn from experience
               and predict future events.
             </p>
@@ -171,16 +171,16 @@ export default function AI() {
 
           {/* ML Section */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">What is Machine Learning?</h2>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">What is Machine Learning?</h2>
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Machine Learning (ML) is a subfield of AI that involves building models that learn from data. ML
               algorithms can detect patterns and predict future events without hard-coding rules.
             </p>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               ML is used, among others, for medical image analysis, fraud detection in banking, demand forecasting, or
               automatic photo tagging in social media.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-secondary leading-relaxed">
               The most popular ML techniques are supervised learning, unsupervised learning, and reinforcement learning.
               Each of them finds application in different types of problems.
             </p>
@@ -188,17 +188,17 @@ export default function AI() {
 
           {/* Data Science Section */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '1.0s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Data Science and Data</h2>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <h2 className="text-2xl font-bold mb-4 text-primary">Data Science and Data</h2>
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               Data Science is an interdisciplinary field combining statistics, computer science, and domain knowledge,
               whose goal is to extract value from data. Data is the fuel for AI and ML – the better the data, the
               better the models.
             </p>
-            <p className="text-lg text-gray-300 mb-4 leading-relaxed">
+            <p className="text-lg text-secondary mb-4 leading-relaxed">
               The Data Science process includes collecting, cleaning, analyzing, and visualizing data, as well as
               implementing predictive models in business practice.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-secondary leading-relaxed">
               In the Big Data era, the importance of tools for processing huge volumes of information is growing, such
               as Hadoop, Spark, or cloud computing.
             </p>
@@ -206,8 +206,8 @@ export default function AI() {
 
           {/* Applications Section */}
           <div className="card animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Examples of AI/ML/Data Applications</h2>
-            <ul className="list-disc list-inside space-y-2 text-lg text-gray-300">
+            <h2 className="text-2xl font-bold mb-4 text-primary">Examples of AI/ML/Data Applications</h2>
+            <ul className="list-disc list-inside space-y-2 text-lg text-secondary">
               <li>Personalized recommendations in e-commerce</li>
               <li>Fraud detection in banking</li>
               <li>Medical image analysis</li>
@@ -259,7 +259,7 @@ export default function AI() {
               </svg>
             </a>
           </div>
-          <p className="text-gray-400 text-sm">© 2025 Datalorian AI — powered by space-grade intelligence.</p>
+          <p className="text-muted text-sm">© 2025 Datalorian AI — powered by space-grade intelligence.</p>
         </div>
       </footer>
     </div>

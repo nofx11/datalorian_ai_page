@@ -64,7 +64,7 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {loading && (
-        <div style={{position:'fixed',top:0,left:0,width:'100vw',height:'100vh',background:'rgba(10,10,15,0.95)',zIndex:9999,display:'flex',alignItems:'center',justifyContent:'center'}}>
+        <div className="fixed inset-0 w-screen h-screen bg-dark-bg/95 z-[9999] flex items-center justify-center">
           <div className="loading-spinner"></div>
         </div>
       )}
@@ -72,17 +72,15 @@ export default function MyApp({ Component, pageProps }) {
         <RadiantMeteors />
         <Component {...pageProps} />
         {/* Meteor shower effect tylko radiant meteors */}
-        {showScroll && (
-          <button
-            aria-label="Scroll to top"
-            onClick={() => window.scrollTo({top:0,behavior:'smooth'})}
-            className="scroll-to-top"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
-            </svg>
-          </button>
-        )}
+        <button
+          aria-label="Scroll to top"
+          onClick={() => window.scrollTo({top:0,behavior:'smooth'})}
+          className={`scroll-to-top${showScroll ? ' show' : ''}`}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+          </svg>
+        </button>
       </div>
     </LanguageContext.Provider>
   );

@@ -47,7 +47,7 @@ export default function Chat() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white relative overflow-x-hidden pt-16">
+    <div className="min-h-screen bg-dark-bg text-primary relative overflow-x-hidden pt-16">
       <Head>
         <title>Chat with Datalorian AI Founder | Datalorian AI</title>
         <meta name="description" content="Chat with the founder of Datalorian AI or an AI chatbot. Educational website about AI, ML and Data Science." />
@@ -124,7 +124,7 @@ export default function Chat() {
           >
             Chat with the Founder
           </h1>
-          <p className="hero-subtitle animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="hero-subtitle animate-fade-in-up text-secondary" style={{ animationDelay: '0.2s' }}>
             Chat with the founder of Datalorian AI or an AI chatbot about artificial intelligence,
             machine learning, and data analysis.
           </p>
@@ -139,17 +139,17 @@ export default function Chat() {
           ref={chatRef}
         >
           {/* <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold mb-4 text-white">
+            <h2 className="text-2xl font-bold mb-4 text-primary">
               AI Chat
             </h2>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-lg text-secondary leading-relaxed">
               Chat with an advanced AI chatbot that will help you understand the world of artificial intelligence
               and machine learning.
             </p>
           </div> */}
           {/* Hugging Face Gradio Chatbot */}
           <div
-            className="w-full h-[500px] rounded-xl overflow-hidden border border-violet-500/20 shadow-2xl chat-iframe"
+            className="w-full h-[500px] rounded-xl overflow-hidden border border-orange-500/20 shadow-2xl chat-iframe"
           >
             <iframe
               src="https://faizan481-ai-chatbot.hf.space/?__theme=dark&deep_link=eHV42wZ7-zs"

@@ -46,7 +46,7 @@ export default function Chat() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white relative overflow-x-hidden pt-16">
+    <div className="min-h-screen bg-dark-bg text-primary relative overflow-x-hidden pt-16">
       <Head>
         <title>Rozmowa z założycielem Datalorian AI | Datalorian AI</title>
         <meta name="description" content="Porozmawiaj z założycielem Datalorian AI lub AI chatbotem. Strona edukacyjna o AI, ML i Data Science." />
@@ -148,7 +148,7 @@ export default function Chat() {
           </div> */}
           {/* Chatbot Hugging Face Gradio */}
           <div
-            className="w-full h-[500px] rounded-xl overflow-hidden border border-violet-500/20 shadow-2xl chat-iframe"
+            className="w-full h-[500px] rounded-xl overflow-hidden border border-orange-500/20 shadow-2xl chat-iframe"
           >
             <iframe
               src="https://faizan481-ai-chatbot.hf.space/?__theme=dark&deep_link=eHV42wZ7-zs"
