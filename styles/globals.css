@@ -191,6 +191,13 @@ html {
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .meteors {
+    width: 100%;
+    left: 0;
+  }
+}
+
 
 .meteor {
   position: absolute;
