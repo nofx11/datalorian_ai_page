@@ -165,7 +165,7 @@ const scrollToChat = () => {
               @media (max-width: 600px) {
                 .chat-iframe {
                   max-width: none !important;
-                  width: 100vw !important;
+                  width: 90vw !important;
                   left: 50% !important;
                   transform: translateX(-50%) !important;
                   position: relative !important;
