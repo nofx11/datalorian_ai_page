@@ -153,7 +153,7 @@ const scrollToChat = () => {
           {/* Chatbot Hugging Face Gradio */}
           <div
             className="w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl chat-iframe"
-            style={{ height: '650px' }}
+            style={{ height: '660px' }}
           >
             <style>{`
               .chat-iframe { height: min(650px, 90vh); }
@@ -164,11 +164,11 @@ const scrollToChat = () => {
               @media (max-width: 600px) {
                 .chat-iframe {
                   max-width: none !important;
-                  width: 90vw !important;
+                  width: 93vw !important;
                   left: 50% !important;
                   transform: translateX(-50%) !important;
                   position: relative !important;
-                  height: 89vh !important;
+                  height: 88vh !important;
                   margin: 0 !important;
                 }
               }
