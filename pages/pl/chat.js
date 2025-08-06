@@ -14,13 +14,15 @@ export default function Chat() {
   /**
    * Płynnie przewiń do sekcji czatu po kliknięciu nagłówka hero.
    */
-  const scrollToChat = () => {
-    if (chatRef.current) {
-      const yOffset = 20; // wysokość nawigacji + margines
-      const y = chatRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
+const scrollToChat = () => {
+  if (chatRef.current) {
+    // Sprawdź czy to mobile (np. max-width 600px)
+    const isMobile = window.innerWidth <= 600;
+    const yOffset = isMobile ? 20 : -70; // mobile: -20, desktop: -70
+    const y = chatRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+};
 
   // Generowanie unoszących się cząstek
   const particles = Array.from({ length: 50 }).map((_, i) => {
