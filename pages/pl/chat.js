@@ -151,7 +151,8 @@ export default function Chat() {
             className="w-full h-[500px] rounded-xl overflow-hidden border border-orange-500/20 shadow-2xl chat-iframe"
           >
             <iframe
-              src="https://faizan481-ai-chatbot.hf.space/?__theme=dark&deep_link=eHV42wZ7-zs"
+              src="https://huggingface.co/spaces/nofx11/chat_with_founder"
+              // src="https://faizan481-ai-chatbot.hf.space/?__theme=dark&deep_link=eHV42wZ7-zs"
               title="AI Chatbot"
               width="100%"
               height="100%"
