@@ -16,7 +16,9 @@ export default function Chat() {
    */
   const scrollToChat = () => {
     if (chatRef.current) {
-      chatRef.current.scrollIntoView({ behavior: 'smooth' });
+      const yOffset = 20; // wysokość nawigacji + margines
+      const y = chatRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -148,30 +150,44 @@ export default function Chat() {
           </div> */}
           {/* Chatbot Hugging Face Gradio */}
           <div
-            className="w-full h-[500px] rounded-xl overflow-hidden border border-orange-500/20 shadow-2xl chat-iframe"
+            className="w-full max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl chat-iframe"
+            style={{ height: '650px' }}
           >
+            <style>{`
+              .chat-iframe { height: min(650px, 90vh); }
+              .chat-iframe iframe { height: 100% !important; min-height: 100% !important; }
+              @media (max-width: 1024px) {
+                .chat-iframe { height: min(500px, 80vh) !important; }
+              }
+              @media (max-width: 600px) {
+                .chat-iframe {
+                  max-width: none !important;
+                  width: 90vw !important;
+                  left: 50% !important;
+                  transform: translateX(-50%) !important;
+                  position: relative !important;
+                  height: 89vh !important;
+                  margin: 0 !important;
+                }
+              }
+            `}</style>
             <iframe
               src="https://nofx11-chat-with-founder.hf.space/?__theme=dark"
-              // src="https://faizan481-ai-chatbot.hf.space/?__theme=dark&deep_link=eHV42wZ7-zs"
               title="AI Chatbot"
               width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: '500px' }}
+              style={{
+                border: 0,
+                height: '100%',
+                minHeight: '100%',
+                width: '100%',
+                maxWidth: '100%',
+                display: 'block',
+              }}
               allow="clipboard-write; microphone;"
               className="rounded-xl"
             />
           </div>
-          <div className="text-center mt-6">
-            <a
-              href="/pl"
-              className="btn-secondary inline-flex items-center gap-2"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-              Powrót na stronę główną
-            </a>
-          </div>
+          {/* Usunięto przycisk powrotu na stronę główną */}
         </div>
       </section>
 
