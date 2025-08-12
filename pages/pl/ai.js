@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function AI() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -154,89 +155,78 @@ export default function AI() {
 
       {/* Content Section */}
       <section className="max-w-4xl mx-auto px-4 py-16 relative z-10" ref={contentRef}>
-        <div className="space-y-8">
-          {/* Featured Article */}
-          <div className="card animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-primary">Jak AI zmienia systemy rekomendacji</h2>
-            <p className="text-lg text-secondary leading-relaxed">
-              Systemy rekomendacyjne oparte na sztucznej inteligencji potrafią dynamicznie analizować zachowania
-              użytkowników, dane o produktach oraz kontekst w czasie rzeczywistym. Dzięki modelom uczenia
-              maszynowego możliwa jest hiperpersonalizacja, co znacząco zwiększa współczynniki konwersji w
-              e-commerce.
+      <div className="space-y-8">
+        {/* Featured Article (teaser) */}
+        <Link
+          href="/pl/articles/ai-agent-frameworks-2025"
+          className="block focus:outline-none"
+        >
+          <div
+            className="card animate-fade-in-up group cursor-pointer"
+            style={{ animationDelay: '0.4s' }}
+            title="Czytaj pełny artykuł"
+          >
+            <h2 className="text-2xl font-bold mb-4 text-primary group-hover:underline">
+              Najnowsze frameworki agentów AI w 2025 roku
+            </h2>
+            <p className="text-lg text-secondary leading-relaxed mb-4">
+              Od AgentMesh po Google ADK – poznaj przełomowe frameworki agentów AI
+              w 2025 roku, ich zastosowania, wyzwania i kierunki rozwoju.
             </p>
+            <span className="inline-flex items-center text-accent group-hover:translate-x-0.5 transition-transform">
+              Czytaj cały artykuł →
+            </span>
           </div>
+        </Link>
 
-          {/* AI Section */}
-          <div className="card animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-primary">Czym jest AI?</h2>
-            <p className="text-lg text-secondary mb-4 leading-relaxed">
-              Sztuczna inteligencja (AI) to dziedzina informatyki zajmująca się tworzeniem systemów zdolnych do
-              wykonywania zadań wymagających inteligencji ludzkiej, takich jak rozumienie języka, rozpoznawanie
-              obrazów czy podejmowanie decyzji.
+          {/* AI Section (teaser) */}
+        <Link href="/pl/articles/agentic-ai-commercial-apps-2025" className="block focus:outline-none">
+          <div className="card animate-fade-in-up group cursor-pointer" style={{ animationDelay: '0.4s' }} title="Czytaj pełny artykuł">
+            <h2 className="text-2xl font-bold mb-4 text-primary group-hover:underline">
+              Komercyjne Zastosowania Autonomicznej Agentowej AI: sierpień 2025
+            </h2>
+            <p className="text-lg text-secondary leading-relaxed mb-4">
+              Przegląd wpływu agentowej AI na retail, finanse, ochronę zdrowia, cyberbezpieczeństwo
+              i sektor publiczny — z kluczowymi metrykami, wyzwaniami i perspektywami.
             </p>
-            <p className="text-lg text-secondary mb-4 leading-relaxed">
-              AI znajduje zastosowanie w wielu branżach: od medycyny, przez finanse, po rozrywkę. Przykłady to
-              systemy rozpoznawania mowy, autonomiczne pojazdy, tłumacze maszynowe czy personalizowane rekomendacje
-              w e-commerce.
-            </p>
-            <p className="text-lg text-secondary leading-relaxed">
-              Współczesne AI opiera się na dużych zbiorach danych i zaawansowanych algorytmach, które pozwalają
-              maszynom uczyć się na podstawie doświadczenia i przewidywać przyszłe zdarzenia.
-            </p>
+            <span className="inline-flex items-center text-accent group-hover:translate-x-0.5 transition-transform">
+              Czytaj cały artykuł →
+            </span>
           </div>
+        </Link>
 
-          {/* ML Section */}
-          <div className="card animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-primary">Czym jest Machine Learning?</h2>
-            <p className="text-lg text-secondary mb-4 leading-relaxed">
-              Uczenie maszynowe (ML) to poddziedzina AI, która polega na budowaniu modeli uczących się na podstawie
-              danych. Algorytmy ML potrafią wykrywać wzorce i przewidywać przyszłe zdarzenia bez programowania
-              reguł na sztywno.
-            </p>
-            <p className="text-lg text-secondary mb-4 leading-relaxed">
-              ML jest wykorzystywane m.in. do analizy obrazów medycznych, detekcji oszustw w bankowości,
-              prognozowania popytu czy automatycznego tagowania zdjęć w mediach społecznościowych.
-            </p>
-            <p className="text-lg text-secondary leading-relaxed">
-              Najpopularniejsze techniki ML to uczenie nadzorowane, nienadzorowane oraz uczenie przez
-              wzmacnianie. Każda z nich znajduje zastosowanie w innych typach problemów.
-            </p>
-          </div>
+          {/* ML Section (teaser) */}
+          <Link href="/pl/articles/what-is-ml" className="block focus:outline-none">
+            <div className="card animate-fade-in-up group cursor-pointer" style={{ animationDelay: '0.8s' }} title="Czytaj pełny artykuł">
+              <h2 className="text-2xl font-bold mb-4 text-primary group-hover:underline">Czym jest Machine Learning?</h2>
+              <p className="text-lg text-secondary leading-relaxed mb-4">
+                Uczenie maszynowe buduje modele, które uczą się z danych, wykrywając wzorce i przewidując wyniki bez twardo zakodowanych reguł.
+              </p>
+              <span className="inline-flex items-center text-accent group-hover:translate-x-0.5 transition-transform">Czytaj cały artykuł →</span>
+            </div>
+          </Link>
 
-          {/* Data Science Section */}
-          <div className="card animate-fade-in-up" style={{ animationDelay: '1.0s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-primary">Data Science i dane</h2>
-            <p className="text-lg text-secondary mb-4 leading-relaxed">
-              Data Science to interdyscyplinarna dziedzina łącząca statystykę, informatykę i wiedzę domenową,
-              której celem jest wydobywanie wartości z danych. Dane są paliwem dla AI i ML – im lepsze dane, tym
-              lepsze modele.
-            </p>
-            <p className="text-lg text-secondary mb-4 leading-relaxed">
-              Proces Data Science obejmuje zbieranie, czyszczenie, analizę i wizualizację danych, a także
-              wdrażanie modeli predykcyjnych w praktyce biznesowej.
-            </p>
-            <p className="text-lg text-secondary leading-relaxed">
-              W erze Big Data rośnie znaczenie narzędzi do przetwarzania ogromnych wolumenów informacji, takich
-              jak Hadoop, Spark czy chmura obliczeniowa.
-            </p>
-          </div>
+          {/* Data Science Section (teaser) */}
+          <Link href="/pl/articles/data-science" className="block focus:outline-none">
+            <div className="card animate-fade-in-up group cursor-pointer" style={{ animationDelay: '1.0s' }} title="Czytaj pełny artykuł">
+              <h2 className="text-2xl font-bold mb-4 text-primary group-hover:underline">Data Science i dane</h2>
+              <p className="text-lg text-secondary leading-relaxed mb-4">
+                Data Science łączy statystykę, programowanie i wiedzę domenową, aby wydobywać wartość z danych — paliwa dla współczesnego AI i ML.
+              </p>
+              <span className="inline-flex items-center text-accent group-hover:translate-x-0.5 transition-transform">Czytaj cały artykuł →</span>
+            </div>
+          </Link>
 
-          {/* Applications Section */}
-          <div className="card animate-fade-in-up" style={{ animationDelay: '1.2s' }}>
-            <h2 className="text-2xl font-bold mb-4 text-white">Przykłady zastosowań AI/ML/Data</h2>
-            <ul className="list-disc list-inside space-y-2 text-lg text-gray-300">
-              <li>Personalizowane rekomendacje w e-commerce</li>
-              <li>Wykrywanie oszustw w bankowości</li>
-              <li>Analiza obrazów medycznych</li>
-              <li>Chatboty i asystenci głosowi</li>
-              <li>Prognozowanie popytu i optymalizacja łańcucha dostaw</li>
-              <li>Systemy rozpoznawania twarzy i biometrii</li>
-              <li>Automatyczne tłumaczenia i przetwarzanie języka naturalnego</li>
-              <li>Inteligentne systemy transportowe i autonomiczne pojazdy</li>
-              <li>Analiza sentymentu w mediach społecznościowych</li>
-              <li>Wizualizacja danych i dashboardy biznesowe</li>
-            </ul>
-          </div>
+          {/* Applications Section (teaser) */}
+          <Link href="/pl/articles/ai-ml-examples" className="block focus:outline-none">
+            <div className="card animate-fade-in-up group cursor-pointer" style={{ animationDelay: '1.2s' }} title="Czytaj pełny artykuł">
+              <h2 className="text-2xl font-bold mb-4 text-primary group-hover:underline">Przykłady zastosowań AI/ML/Data</h2>
+              <p className="text-lg text-secondary leading-relaxed mb-4">
+                Od personalizowanych rekomendacji i detekcji fraudów po chatboty, prognozowanie popytu i autonomiczne systemy.
+              </p>
+              <span className="inline-flex items-center text-accent group-hover:translate-x-0.5 transition-transform">Czytaj cały artykuł →</span>
+            </div>
+          </Link>
         </div>
       </section>
 
