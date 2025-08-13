@@ -978,3 +978,13 @@ transition: all 0.3s ease;
 
 /* removed duplicate/legacy .social-link rule, only main color border remains above */
 
+
+
+/* Hide global animated background on article pages */
+body.no-anim-page .animated-bg,
+body.no-anim-page .meteors,
+body.no-anim-page .particles,
+body.no-anim-page .particle {
+  display: none !important;
+  animation: none !important;
+}

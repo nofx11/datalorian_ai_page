@@ -2,6 +2,7 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const ARTICLES = {
 "ai-agent-frameworks-2025": {
@@ -251,11 +252,16 @@ export async function getStaticProps({ params }) {
   return { props: { slug: params.slug } };
 }
 
+function titleToImage(slug) {
+  return `/pictures/${slug}.webp`;
+}
+
 export default function ArticlePagePL({ slug }) {
   const article = ARTICLES[slug] || null;
   if (!article) return null;
 
   const { title, description, content } = article;
+  const [imgSrc, setImgSrc] = useState(titleToImage(slug));
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -264,6 +270,13 @@ export default function ArticlePagePL({ slug }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+//   useEffect(() => {
+//     document.body.classList.add('no-anim-page');
+//     return () => {
+//       document.body.classList.remove('no-anim-page');
+//     };
+//   }, []);
 
   return (
     <div className="min-h-screen bg-dark-bg text-primary relative overflow-x-hidden flex flex-col">
@@ -334,13 +347,24 @@ export default function ArticlePagePL({ slug }) {
 
       <div className="h-16" />
 
-      <main className="flex-1 max-w-3xl mx-auto px-4 pb-24 mt-12">
-        <header className="mb-8">
+      <main className="no-anim flex-1 max-w-3xl mx-auto px-4 pb-24 mt-12">
+        <div className="max-w-3xl mx-auto">
+        <header className="mb-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-3">{title}</h1>
-          <p className="text-secondary">{description}</p>
+          <p className="text-secondary mb-4 text-justify">{description}</p>
+          <Image
+            src={imgSrc}
+            alt={title}
+            width={640}
+            height={360}
+            className="w-full h-auto rounded-md object-cover mb-6 not-animated bg-black mx-auto"
+            priority
+            onError={() => setImgSrc('/pictures/placeholder.webp')}
+            style={{ animation: 'none' }}
+          />
         </header>
 
-        <article className="prose prose-invert max-w-none">
+        <article className="prose prose-invert max-w-none text-justify">
           {content}
         </article>
 
@@ -351,6 +375,7 @@ export default function ArticlePagePL({ slug }) {
           >
             ← Powrót do listy artykułów
           </Link>
+        </div>
         </div>
       </main>
 
