@@ -1,3 +1,4 @@
+import NavBar from "../../components/NavBar";
 import Head from "next/head";
 import React, { useState, useEffect, useRef } from "react";
 
@@ -67,58 +68,7 @@ export default function AI() {
       <div className="particles">{particles}</div>
 
       {/* Navigation */}
-      <nav
-        className={`nav-container ${isScrolled ? 'scrolled' : ''}`}
-        style={{ position: 'fixed', top: 0, width: '100%' }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <a href="/en" className="text-xl font-bold nav-logo">
-                Datalorian AI
-              </a>
-            </div>
-
-            <div className="hidden md:block">
-              <div className="flex items-baseline space-x-4">
-                <a href="/en/chat" className="nav-link">
-                  Let's Chat
-                </a>
-                <a href="/en/ai" className="nav-link">
-                  Learn More
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <div className="lang-selector">
-                <button
-                  className="lang-btn"
-                  onClick={() => setShowDropdown(!showDropdown)}
-                >
-                  EN
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {showDropdown && (
-                  <div className="lang-dropdown">
-                    <button
-                      className="lang-option"
-                      onClick={() => {
-                        document.cookie = 'lang=pl; path=/; max-age=31536000';
-                        window.location.href = '/pl/ai';
-                      }}
-                    >
-                      PL
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavBar locale="en" context="ai" />
 
       {/* Hero Section */}
 

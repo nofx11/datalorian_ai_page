@@ -1,3 +1,4 @@
+import NavBar from "../../../components/NavBar";
 // pages/pl/articles/[slug].js
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
@@ -271,12 +272,12 @@ export default function ArticlePagePL({ slug }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-//   useEffect(() => {
-//     document.body.classList.add('no-anim-page');
-//     return () => {
-//       document.body.classList.remove('no-anim-page');
-//     };
-//   }, []);
+  useEffect(() => {
+    document.body.classList.add('no-anim-page');
+    return () => {
+      document.body.classList.remove('no-anim-page');
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-dark-bg text-primary relative overflow-x-hidden flex flex-col">
@@ -292,79 +293,28 @@ export default function ArticlePagePL({ slug }) {
       </Head>
 
       {/* Nawigacja */}
-      <nav
-        className={`nav-container ${isScrolled ? 'scrolled' : ''}`}
-        style={{ position: 'fixed', top: 0, width: '100%', zIndex: 50 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <a href="/pl" className="text-xl font-bold nav-logo">
-                Datalorian AI
-              </a>
-            </div>
-
-            <div className="hidden md:block">
-              <div className="flex items-baseline space-x-4">
-                <a href="/pl/chat" className="nav-link">
-                  Porozmawiaj
-                </a>
-                <a href="/pl/ai" className="nav-link">
-                  Dowiedz się więcej
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <div className="lang-selector relative">
-                <button
-                  className="lang-btn"
-                  onClick={() => setShowDropdown(!showDropdown)}
-                >
-                  PL
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {showDropdown && (
-                  <div className="lang-dropdown">
-                    <button
-                      className="lang-option"
-                      onClick={() => {
-                        document.cookie = 'lang=en; path=/; max-age=31536000';
-                        window.location.href = `/en/articles/${slug}`;
-                      }}
-                    >
-                      EN
-                    </button>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavBar locale="pl" context="article" slug={slug} />
 
       <div className="h-16" />
 
       <main className="no-anim flex-1 max-w-3xl mx-auto px-4 pb-24 mt-12">
         <div className="max-w-3xl mx-auto">
-        <header className="mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">{title}</h1>
-          <p className="text-secondary mb-4 text-justify">{description}</p>
+        <header className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold mb-3 text-center">{title}</h1>
+          <p className="text-secondary mb-4 md:text-justify hyphens-auto">{description}</p>
           <Image
             src={imgSrc}
             alt={title}
             width={640}
             height={360}
-            className="w-full h-auto rounded-md object-cover mb-6 not-animated bg-black mx-auto"
+            className="w-full h-auto rounded-md object-cover mb-6 not-animated bg-black"
             priority
             onError={() => setImgSrc('/pictures/placeholder.webp')}
             style={{ animation: 'none' }}
           />
         </header>
 
-        <article className="prose prose-invert max-w-none text-justify">
+        <article className="prose prose-invert max-w-none md:text-justify hyphens-auto">
           {content}
         </article>
 
